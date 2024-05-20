@@ -152,6 +152,19 @@ def max_value(board):
 
 def min_value(board):
     # Your code goes here
+    
+    if terminal(board):
+        return utility(board), None
+
+    v = float('inf')
+    move = None
+    for action in actions(board):
+        aux, act = max_value(result(board, action))
+        if aux < v:
+            v = aux
+            move = action
+            if v == -1:
+                return v, move
 
     return v, move
 
